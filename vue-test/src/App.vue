@@ -2,7 +2,7 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <todoHeard :addTodo='addTodo'/>
-      <todoList :todos="todos"/>
+      <todoList :todos="todos" :deleteTodo="deleteTodo"/>
       <todoFooder/>
     </div>
   </div>
@@ -22,6 +22,9 @@ export default {
   methods:{
     addTodo (todo) {
       this.todos.unshift(todo)
+    },
+    deleteTodo (index) {
+      this.todos.splice(index,1)
     }
   },
   data () {

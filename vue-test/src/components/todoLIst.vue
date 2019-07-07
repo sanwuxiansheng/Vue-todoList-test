@@ -1,13 +1,23 @@
 <template>
     <ul class="todo-main">
-        <todoItem v-for="todo in todos" :key="todo.id" :todo="todo"/>
+        <todoItem v-for="(todo, index) in todos" :key="todo.id" :todo="todo" :deleteTodo="deleteTodo" :index="index"/>
     </ul>
 </template>
 <script>
 import todoItem from './todoItem';
 export default {
     // 父子之间通信通过props
-    props:['todos'],
+    props:{
+        todos:{
+            type:Array,
+            required:true
+        },
+        deleteTodo:{
+            type:Function,
+            required:true
+        }
+    },
+
     components:{
         todoItem
     }
