@@ -1,7 +1,7 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <todoHeard/>
+      <todoHeard :addTodo='addTodo'/>
       <todoList :todos="todos"/>
       <todoFooder/>
     </div>
@@ -19,11 +19,16 @@ export default {
     todoList,
     todoFooder
   },
+  methods:{
+    addTodo (todo) {
+      this.todos.unshift(todo)
+    }
+  },
   data () {
     return {
       todos:[
         {id:1, title:'宝马', isShow:false},
-        {id:2, title:'奥迪', isShow:false},
+        {id:2, title:'奥迪', isShow:true},
         {id:3, title:'奔驰', isShow:false},
       ]
     }
