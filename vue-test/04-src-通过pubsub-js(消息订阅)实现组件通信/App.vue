@@ -36,12 +36,16 @@ export default {
   // 页面渲染后订阅消息
   mounted () {
     // 订阅消息实现删除操作
-    var token = PubSub.subscribe('deleteTodo', ( index, data) => {
+    this.token = PubSub.subscribe('deleteTodo', ( index, data) => {
       this.deleteTodo(data)
     });
-
-    // publish a topic asynchronously
-    PubSub.publish('MY TOPIC', 'hello world!');
+  },
+  beforDestroy () {
+    // 销毁实例对象之前
+    // 取消消息订阅
+    PubSub.unsubscribe(this.token)
+    // 解绑绑定的事件
+     PubSub.$bus.$off('deleteTodo')
   },
   // 计算属性
   computed:{
