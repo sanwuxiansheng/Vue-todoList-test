@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 
 // Vue.config.productionTip = false
-
+Vue.prototype.$bus = new Vue()
 // 实例化Vue对象
 new Vue({
   // 选择器

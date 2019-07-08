@@ -20,10 +20,6 @@ export default {
             type:Function,
             required:true
         },
-        targetTodo:{
-            type:Function,
-            required:true
-        },
         index:Number
     },
     computed:{
@@ -32,7 +28,8 @@ export default {
                 return this.todo.isShow
             },
             set () {
-                this.targetTodo(this.todo)
+                // this.targetTodo(this.todo)
+                this.$bus.$emit('targetTodo', this.todo)
             }
         }
     },

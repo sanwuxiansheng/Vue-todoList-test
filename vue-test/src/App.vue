@@ -3,7 +3,7 @@
     <div class="todo-wrap">
       <!-- :addTodo='addTodo'通过数据硬绑定来传输数据进行父子组件之间的通信 -->
       <todoHeard @addTodo='addTodo'/>
-      <todoList :todos="todos" :deleteTodo="deleteTodo" :targetTodo="targetTodo"/>
+      <todoList :todos="todos" :deleteTodo="deleteTodo" />
       <todoFooder :todos="todos" :checkAllTodos="checkAllTodos">
         <label slot="left">
           <input type="checkbox" v-model="isCheck"/>
@@ -39,9 +39,11 @@ export default {
     var token = PubSub.subscribe('deleteTodo', ( index, data) => {
       this.deleteTodo(data)
     });
-
-    // publish a topic asynchronously
-    PubSub.publish('MY TOPIC', 'hello world!');
+    // 通过事件总线绑定targetTodo事件
+    // 绑定事件监听的方法
+    this.$bus.$on('targetTodo', (todo) => {
+      this.targetTodo(todo)
+    })
   },
   // 计算属性
   computed:{
