@@ -12,7 +12,9 @@
 // 引入子组件
 import todoHeard from './components/todoHeard';
 import todoList from './components/todoLIst';
-import todoFooder from './components/todoFooder'
+import todoFooder from './components/todoFooder';
+// 引入自己组装的方法
+import Storage from './utils/utils';
 export default {
   name: 'App',
   // 注册组件
@@ -43,11 +45,21 @@ export default {
   },
   data () {
     return {
-      todos:[
-        {id:1, title:'宝马', isShow:false},
-        {id:2, title:'奥迪', isShow:true},
-        {id:3, title:'奔驰', isShow:false},
-      ]
+      // todos:[
+      //   {id:1, title:'宝马', isShow:false},
+      //   {id:2, title:'奥迪', isShow:true},
+      //   {id:3, title:'奔驰', isShow:false},
+      // ]
+      todos: Storage.getTodos()
+    }
+  },
+  // 监听数据的变化
+  watch:{
+    todos:{
+      deep:true, // 深度监视
+      handler:function (value) {
+        Storage.setTodos(value)
+      }
     }
   }
 }
