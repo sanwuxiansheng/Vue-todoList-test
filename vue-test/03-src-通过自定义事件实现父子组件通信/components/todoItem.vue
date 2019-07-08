@@ -11,7 +11,6 @@
 </li>
 </template>
 <script>
-import PubSub from 'pubsub-js'
 export default {
     // props用来接收父组件传给子组件的数据
     props:{
@@ -60,9 +59,7 @@ export default {
         },
         Delete () {
             if (confirm('您确认要删除吗')) {
-                // 发布消息
-                PubSub.publish('deleteTodo', this.index)
-                // this.deleteTodo(this.index)
+                this.deleteTodo(this.index)
             }
         }
     }

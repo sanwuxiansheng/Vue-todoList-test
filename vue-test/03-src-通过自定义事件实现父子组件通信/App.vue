@@ -23,8 +23,6 @@ import todoList from './components/todoLIst';
 import todoFooder from './components/todoFooder';
 // 引入自己组装的方法
 import Storage from './utils/utils';
-// 引入pubsub-js
-import PubSub from 'pubsub-js';
 export default {
   name: 'App',
   // 注册组件
@@ -32,16 +30,6 @@ export default {
     todoHeard,
     todoList,
     todoFooder
-  },
-  // 页面渲染后订阅消息
-  mounted () {
-    // 订阅消息实现删除操作
-    var token = PubSub.subscribe('deleteTodo', ( index, data) => {
-      this.deleteTodo(data)
-    });
-
-    // publish a topic asynchronously
-    PubSub.publish('MY TOPIC', 'hello world!');
   },
   // 计算属性
   computed:{
