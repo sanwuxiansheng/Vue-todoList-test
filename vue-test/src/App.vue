@@ -1,9 +1,10 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
+      <!-- :addTodo='addTodo'通过数据硬绑定来传输数据进行父子组件之间的通信 -->
       <todoHeard :addTodo='addTodo'/>
-      <todoList :todos="todos" :deleteTodo="deleteTodo"/>
-      <todoFooder/>
+      <todoList :todos="todos" :deleteTodo="deleteTodo" :targetTodo="targetTodo"/>
+      <todoFooder :todos="todos" :checkAllTodos="checkAllTodos"/>
     </div>
   </div>
 </template>
@@ -14,18 +15,31 @@ import todoList from './components/todoLIst';
 import todoFooder from './components/todoFooder'
 export default {
   name: 'App',
+  // 注册组件
   components:{
     todoHeard,
     todoList,
     todoFooder
   },
   methods:{
+    // 添加数据
     addTodo (todo) {
       this.todos.unshift(todo)
     },
+    // 删除数据
     deleteTodo (index) {
       this.todos.splice(index,1)
+    },
+    // 修改todo.isShow的状态
+    targetTodo (todo) {
+      todo.isShow = !todo.isShow
+    },
+    // 子组件中如果修改了自己的复选框的选中状态,此时,父级组件这边的todos中每个todo的isShow全部要改变
+    checkAllTodos (isCheck) {
+      //把todos中所有的todo的isShow改变
+      this.todos.forEach(todo => todo.isShow = isCheck )
     }
+
   },
   data () {
     return {

@@ -4,7 +4,7 @@
     @mouseleave="mouseMove(false)"
 >
     <label>
-        <input type="checkbox" v-model="todo.isShow"/>
+        <input type="checkbox" v-model="isComputed"/>
         <span>{{todo.title}}</span>
     </label>
     <button class="btn btn-danger" v-show="isDisplay" @click="Delete">删除</button>
@@ -12,13 +12,28 @@
 </template>
 <script>
 export default {
+    // props用来接收父组件传给子组件的数据
     props:{
         todo:Object,
         deleteTodo:{
             type:Function,
             required:true
         },
+        targetTodo:{
+            type:Function,
+            required:true
+        },
         index:Number
+    },
+    computed:{
+        isComputed:{
+            get () {
+                return this.todo.isShow
+            },
+            set () {
+                this.targetTodo(this.todo)
+            }
+        }
     },
     data () {
         return {
@@ -28,6 +43,7 @@ export default {
         }
     },
     methods:{
+        // 鼠标移动事件
         mouseMove (flage) {
             // 如果传入的参数为true则说明是鼠标移入事件
             // 如果传入的参数是false则说明是鼠标移出事件

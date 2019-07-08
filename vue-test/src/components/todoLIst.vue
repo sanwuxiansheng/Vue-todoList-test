@@ -1,6 +1,6 @@
 <template>
     <ul class="todo-main">
-        <todoItem v-for="(todo, index) in todos" :key="todo.id" :todo="todo" :deleteTodo="deleteTodo" :index="index"/>
+        <todoItem v-for="(todo, index) in todos" :key="todo.id" :todo="todo" :deleteTodo="deleteTodo" :index="index" :targetTodo="targetTodo"/>
     </ul>
 </template>
 <script>
@@ -13,6 +13,10 @@ export default {
             required:true
         },
         deleteTodo:{
+            type:Function,
+            required:true
+        },
+        targetTodo: {
             type:Function,
             required:true
         }
