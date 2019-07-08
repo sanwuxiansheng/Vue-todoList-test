@@ -2,7 +2,7 @@
   <div class="todo-container">
     <div class="todo-wrap">
       <!-- :addTodo='addTodo'通过数据硬绑定来传输数据进行父子组件之间的通信 -->
-      <todoHeard @addTodo='addTodo'/>
+      <todoHeard :addTodo='addTodo'/>
       <todoList :todos="todos" :deleteTodo="deleteTodo" :targetTodo="targetTodo"/>
       <todoFooder :todos="todos" :checkAllTodos="checkAllTodos">
         <label slot="left">

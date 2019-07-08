@@ -5,12 +5,12 @@
 </template>
 <script>
 export default {
-    // props:{
-    //     addTodo:{
-    //         type:Function,
-    //         required:true
-    //     }
-    // },
+    props:{
+        addTodo:{
+            type:Function,
+            required:true
+        }
+    },
     data(){
         return {
             todoName:''
@@ -29,7 +29,7 @@ export default {
                     isShow:false
                 }
                 // 将用户输入的数据添加到数组中
-                this.$emit('addTodo', todo);
+                this.addTodo(todo);
                 // 清空输入框
                 this.todoName=''
             };
