@@ -2,9 +2,9 @@
 import Vue from 'vue'
 // 引入App.vue
 import App from './App'
-// 引入VueResource
-import VueResource from 'vue-resource';
-Vue.use(VueResource);
+
+// Vue.config.productionTip = false
+Vue.prototype.$bus = new Vue()
 // 实例化Vue对象
 new Vue({
   // 选择器

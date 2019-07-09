@@ -39,6 +39,8 @@
         const token = 'id-' + ++id;
         // 根据标识来存储对应的回调函数
         subscribes[token] = subscriber;
+        // 返回token
+        return token;
     };
     // 异步发布消息的方法
     PubSub.publish = function (msg, data) {
@@ -75,7 +77,7 @@
             let subscribes = Object.values(subscriberContainer).find(subscribes => {
                 return subscribes[token]
             })
-            subscribers && delete subscribers['id-1']
+            subscribers && delete subscribers[token]
         } else {
             // 传的是消息的名字
             delete subscriberContainer[token]
