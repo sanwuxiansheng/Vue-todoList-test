@@ -1,36 +1,43 @@
 <template>
   <div>
-    <div class="row">
-      <div class="col-xs-offset-2 col-xs-8">
-        <div class="page-header">
-          <h2>Router Basic - 01</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2 col-xs-offset-2">
-        <div class="list-group">
-          <router-link class="list-group-item" to="/about">About</router-link>
-          <router-link class="list-group-item" to="/home">Home</router-link>
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <div class="panel">
-          <div class="panel-body">
-            <!-- keep-alive标签可以让某些组件一直存活着 -->
-            <keep-alive>
-              <router-view msg="我了个去"></router-view>
-            </keep-alive>
-          </div>
-        </div>
-      </div>
-    </div>
+    <h2>当前的值{{count}},当前的数字是:{{evenOrOdd}}</h2>
+    <button @click="increament">加的操作+</button>
+    <button @click="decrement">减的操作-</button>
+    <button @click="incrementIfOdd">奇数的时候相加+</button>
+    <button @click="incrementAsync">异步的相加+</button>
   </div>
 </template>
-
 <script>
   export default {
-
+    methods: {
+      increament () {
+        this.count++
+      },
+      decrement () {
+        this.count--
+      },
+      incrementIfOdd () {
+        if (this.count%2 !== 0) {
+          this.count++
+        }
+      },
+      incrementAsync () {
+        setTimeout(() => {
+          this.count++
+        }, 1000);
+      }
+    },
+    data () {
+      return {
+        // 数据,数据的值可能随时改变,数据状态可能会随时改变---数据状态
+        count: 0
+      }
+    },
+    computed: {
+      evenOrOdd () {
+        return this.count%2 === 0 ? '偶数' : '奇数'
+      }
+    }
   }
 </script>
 <style scoped>
