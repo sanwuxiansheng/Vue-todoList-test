@@ -2,8 +2,6 @@
 import Vue from 'vue'
 // 引入App.vue
 import App from './App';
-// 引入写好的库
-import store from './store';
 //实例化Vue,并做相关的配置或者是注册插件
 new Vue({
   el: '#app',
@@ -12,5 +10,4 @@ new Vue({
   },
   //创建模版
   template: '<App/>',
-  store // 挂载仓库
 })
