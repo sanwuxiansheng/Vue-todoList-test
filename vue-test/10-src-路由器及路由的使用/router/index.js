@@ -6,7 +6,7 @@ import VueRouter from 'vue-router';
 import routes from './routes';
 // 声明使用插件
 Vue.use(VueRouter)
-// 挂载到vue实例对象上
+// 挂载到VueRouter实例对象上
 export default new VueRouter({
     mode:'history',
     routes
